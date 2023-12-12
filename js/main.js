@@ -5,28 +5,39 @@ videos.forEach((video) => {
   const closeBtn = video.querySelector(".video__close");
   const videoEl = video.querySelector(".video__video");
   const overlay = video.querySelector(".video__overlay");
-  let isPaused = false;
 
   playBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    video.scrollIntoView({ behavior: "smooth", block: "start" });
     videoEl.play();
-    videoEl.setAttribute("controls", "controls");
-    overlay.style.display = "none";
-    closeBtn.style.display = "block";
   });
 
   closeBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    overlay.style.display = "flex";
+    video.classList.remove("video--expanded");
+    videoEl.removeAttribute("controls", "controls");
     videoEl.currentTime = 0;
     videoEl.pause();
+    closeBtn.classList.remove("video__close--is-visible");
+    overlay.classList.remove("video__overlay--is-playing");
+    videoEl.classList.remove("video__video--is-playing");
   });
 
-  videoEl.onpause = () => {
-    isPaused = true;
-    overlay.style.display = "flex";
+  videoEl.onplay = () => {
+    videoEl.setAttribute("controls", "controls");
+    videoEl.classList.add("video__video--is-playing");
+    video.classList.add("video--expanded");
+    overlay.classList.add("video__overlay--is-playing");
+    closeBtn.classList.add("video__close--is-visible");
   };
 
-  console.log("playBtn", playBtn);
-  console.log("closeBtn", closeBtn);
+  videoEl.onpause = () => {
+    overlay.classList.remove("video__overlay--is-playing");
+  };
+
+  videoEl.onended = () => {
+    if (video.classList.contains("video--loop")) {
+      videoEl.play();
+    }
+  };
 });

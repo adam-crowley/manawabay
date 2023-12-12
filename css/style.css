@@ -135,6 +135,18 @@ Helper classes
 /* ==========================================================================
 	 Typography
 	 ========================================================================== */
+@font-face {
+  font-family: "shnehalbfett";
+  src: url("../fonts/sohne-halbfett-webfont.woff2") format("woff2"), url("../fonts/sohne-halbfett-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "butler_stencilextrabold";
+  src: url("../fonts/butlerstencil-extrabold-webfont.woff2") format("woff2"), url("../fonts/butlerstencil-extrabold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   background-color: #000;
   color: #fff;
@@ -146,6 +158,19 @@ body {
 
 p {
   font-size: 1rem; /* 16px */
+}
+
+h1 {
+  font-family: "butler_stencilextrabold";
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.1rem;
+  }
 }
 
 /*
@@ -175,21 +200,61 @@ p {
 }
 
 .header__federation {
-  width: 172px;
+  width: 32vw;
+  max-width: 172px;
+}
+@media (min-width: 768px) {
+  .header__federation {
+    width: 172px;
+  }
 }
 
 .header__manawa-bay {
-  width: 210px;
+  width: 38vw;
+  max-width: 206px;
+  margin-top: -3px;
+}
+@media (min-width: 768px) {
+  .header__manawa-bay {
+    margin-top: -3px;
+    width: 206px;
+  }
 }
 
 .container {
-  width: 787px;
+  display: flex;
+  justify-content: center;
+}
+
+.container__column {
+  width: 859px;
   max-width: 100%;
-  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
 .video {
   position: relative;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  transition: width 0.4s ease-in-out;
+}
+
+.video__video {
+  position: relative;
+  visibility: hidden;
+}
+
+.video__video.video__video--is-playing {
+  visibility: visible;
+}
+
+.video--expanded {
+  width: 100vw;
+}
+
+.video__is-playing .video__poster-img {
+  display: none;
 }
 
 .video__overlay {
@@ -201,16 +266,29 @@ p {
   width: 100%;
   height: 100%;
   top: 0;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.video__overlay.video__overlay--is-playing {
+  opacity: 0;
+}
+
+.video__poster-img {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
 }
 
 .video__play {
+  font-family: "shnehalbfett";
+  font-size: 0.9rem;
   pointer-events: all;
   display: inline-flex;
   align-items: center;
-  font-weight: 700;
   border-radius: 40px;
   height: 40px;
-  padding: 0 20px 0;
+  padding: 0 1.4rem 0;
   border: 0;
   outline: 0;
   background: #fff;
@@ -218,17 +296,19 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: #000;
-  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .video__arrow {
   width: 10px;
   margin-left: 8px;
+  margin-top: -1px;
 }
 
 .video__close {
-  display: none;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -239,6 +319,11 @@ p {
   border-radius: 40px;
   border: 0;
   outline: 0;
+}
+
+.video__close.video__close--is-visible {
+  pointer-events: all;
+  opacity: 1;
 }
 
 .video__close-icon {
