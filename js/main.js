@@ -14,13 +14,14 @@ videos.forEach((video) => {
 
   closeBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    video.classList.remove("video--expanded");
+
     videoEl.removeAttribute("controls", "controls");
     videoEl.currentTime = 0;
     videoEl.pause();
     closeBtn.classList.remove("video__close--is-visible");
     overlay.classList.remove("video__overlay--is-playing");
     videoEl.classList.remove("video__video--is-playing");
+    video.classList.remove("video--expanded");
   });
 
   videoEl.onplay = () => {
@@ -35,6 +36,7 @@ videos.forEach((video) => {
     overlay.classList.remove("video__overlay--is-playing");
   };
 
+  //restart video on videos with .video--loop class
   videoEl.onended = () => {
     if (video.classList.contains("video--loop")) {
       videoEl.play();

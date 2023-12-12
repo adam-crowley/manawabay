@@ -249,12 +249,29 @@ h1 {
   visibility: visible;
 }
 
-.video--expanded {
-  width: 100vw;
+@media (min-width: 768px) {
+  .video--expanded {
+    width: 100vw;
+  }
+}
+@media (min-width: 992px) {
+  .video--expanded {
+    width: 80vw;
+  }
+}
+@media (min-width: 1200px) {
+  .video--expanded {
+    width: 70vw;
+  }
+}
+@media (min-width: 1400px) {
+  .video--expanded {
+    width: 60vw;
+  }
 }
 
-.video__is-playing .video__poster-img {
-  display: none;
+.video--expanded .video__poster-img {
+  visibility: hidden;
 }
 
 .video__overlay {
@@ -306,6 +323,7 @@ h1 {
 }
 
 .video__close {
+  display: none;
   pointer-events: none;
   transition: opacity 0.2s ease-in-out;
   opacity: 0;
@@ -319,6 +337,11 @@ h1 {
   border-radius: 40px;
   border: 0;
   outline: 0;
+}
+@media (min-width: 768px) {
+  .video__close {
+    display: block;
+  }
 }
 
 .video__close.video__close--is-visible {
