@@ -136,6 +136,12 @@ Helper classes
 	 Typography
 	 ========================================================================== */
 @font-face {
+  font-family: "shneleicht";
+  src: url("../fonts/sohne-leicht-webfont.woff2") format("woff2"), url("../fonts/sohne-leicht-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "shnehalbfett";
   src: url("../fonts/sohne-halbfett-webfont.woff2") format("woff2"), url("../fonts/sohne-halbfett-webfont.woff") format("woff");
   font-weight: normal;
@@ -148,6 +154,7 @@ Helper classes
   font-style: normal;
 }
 body {
+  font-family: "shneleicht";
   background-color: #000;
   color: #fff;
   font-size: 1em; /* 16px */
@@ -157,7 +164,9 @@ body {
 }
 
 p {
-  font-size: 1rem; /* 16px */
+  font-family: "shneleicht";
+  font-size: 1.2rem;
+  margin-bottom: 2em;
 }
 
 h1 {
@@ -170,6 +179,32 @@ h1 {
 @media (min-width: 768px) {
   h1 {
     font-size: 3.1rem;
+  }
+}
+
+h2 {
+  font-family: "butler_stencilextrabold";
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+@media (min-width: 768px) {
+  h2 {
+    font-size: 3.1rem;
+  }
+}
+
+h3 {
+  font-family: "butler_stencilextrabold";
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 0.8em;
+  margin-bottom: 0.6em;
+}
+@media (min-width: 768px) {
+  h3 {
+    font-size: 5rem;
   }
 }
 
@@ -192,6 +227,64 @@ h1 {
   text-shadow: none;
 }
 
+/* General */
+.page {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container__column {
+  width: 859px;
+  max-width: 100%;
+  padding: 3rem 1.5rem;
+}
+
+.container__group {
+  position: relative;
+  margin: 5.5vw 0 11.5vw;
+}
+
+.button {
+  font-family: "shnehalbfett";
+  font-size: 0.9rem;
+  pointer-events: all;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 40px;
+  height: 40px;
+  padding: 0 1.2rem 0 1.4rem;
+  border: solid 2px #fff;
+  outline: 0;
+  background-color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.button__download {
+  width: 30px;
+  fill: #000;
+  margin-top: 4px;
+  margin-left: 4px;
+  transition: fill 0.2s ease-in-out;
+}
+
+.button:hover .button__download {
+  fill: #fff;
+}
+
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -221,34 +314,30 @@ h1 {
   }
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
-.container__column {
-  width: 859px;
-  max-width: 100%;
-  padding: 3rem 1.5rem;
-}
-
+/* Video */
 .video {
   position: relative;
   margin-left: 50%;
   transform: translateX(-50%);
   width: 100%;
+  overflow: hidden;
   transition: width 0.4s ease-in-out;
 }
 
 .video__video {
   position: relative;
   visibility: hidden;
+  width: 100.5%;
+  left: -0.25%;
 }
 
 .video__video.video__video--is-playing {
   visibility: visible;
 }
 
+.video--expanded {
+  z-index: 1;
+}
 @media (min-width: 768px) {
   .video--expanded {
     width: 100vw;
@@ -261,12 +350,12 @@ h1 {
 }
 @media (min-width: 1200px) {
   .video--expanded {
-    width: 70vw;
+    width: 80vw;
   }
 }
 @media (min-width: 1400px) {
   .video--expanded {
-    width: 60vw;
+    width: 70vw;
   }
 }
 
@@ -292,7 +381,11 @@ h1 {
 }
 
 .video__poster-img {
-  width: 100%;
+  width: 101%;
+  top: -0.5%;
+  left: -0.5%;
+  right: -0.5%;
+  bottom: -0.5%;
   position: absolute;
   z-index: -1;
 }
@@ -306,7 +399,7 @@ h1 {
   border-radius: 40px;
   height: 40px;
   padding: 0 1.4rem 0;
-  border: 0;
+  border: solid 2px #fff;
   outline: 0;
   background: #fff;
   line-height: 1;
@@ -314,12 +407,26 @@ h1 {
   letter-spacing: 0.8px;
   color: #000;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.video__play:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 .video__arrow {
   width: 10px;
   margin-left: 8px;
   margin-top: -1px;
+}
+
+.video__arrow path {
+  fill: #000;
+  transition: fill 0.2s ease-in-out;
+}
+
+.video__play:hover .video__arrow path {
+  fill: #fff;
 }
 
 .video__close {
@@ -352,6 +459,47 @@ h1 {
 .video__close-icon {
   width: 17px;
   transform: rotate(45deg);
+}
+
+.video--landing.video--expanded {
+  width: 100%;
+}
+
+.video--landing .video__play {
+  margin-top: 17%;
+}
+@media (min-width: 576px) {
+  .video--landing .video__play {
+    margin-top: 13%;
+  }
+}
+@media (min-width: 768px) {
+  .video--landing .video__play {
+    margin-top: 10%;
+  }
+}
+@media (min-width: 992px) {
+  .video--landing .video__play {
+    margin-top: 5%;
+  }
+}
+
+/* Footer */
+.footer__pattern {
+  width: 109vw;
+  margin: 0 -2.5%;
+}
+
+.footer__pattern--right {
+  position: absolute;
+  left: 53%;
+  bottom: -4.5vw;
+}
+
+.footer__pattern--left {
+  position: absolute;
+  right: 53%;
+  bottom: -4.5vw;
 }
 
 /*# sourceMappingURL=style.css.map */

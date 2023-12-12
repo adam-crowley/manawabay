@@ -153,6 +153,14 @@
 	 ========================================================================== */  
 
 @font-face {
+  font-family: 'shneleicht';
+  src: url('../fonts/sohne-leicht-webfont.woff2') format('woff2'),
+        url('../fonts/sohne-leicht-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}   
+
+@font-face {
   font-family: 'shnehalbfett';
   src: url('../fonts/sohne-halbfett-webfont.woff2') format('woff2'),
         url('../fonts/sohne-halbfett-webfont.woff') format('woff');
@@ -169,6 +177,7 @@
 } 
   
 body {
+  font-family: 'shneleicht';
   background-color: #000;
 	color: #fff;
 	font-size: 1em; /* 16px */
@@ -178,7 +187,9 @@ body {
 }
 
 p {
-	font-size: 1rem; /* 16px */
+  font-family: 'shneleicht';
+	font-size: 1.2rem;
+  margin-bottom: 2em;
 }
 
 h1 {
@@ -189,6 +200,28 @@ h1 {
   margin-bottom: 0.6em;
   @media (min-width: 768px) {
     font-size: 3.1rem;
+	}
+}
+
+h2 {
+  font-family: 'butler_stencilextrabold';
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+  @media (min-width: 768px) {
+    font-size: 3.1rem;
+	}
+}
+
+h3 {
+  font-family: 'butler_stencilextrabold';
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 0.8em;
+  margin-bottom: 0.6em;
+  @media (min-width: 768px) {
+    font-size: 5rem;
 	}
 }
 

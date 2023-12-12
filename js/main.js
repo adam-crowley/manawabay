@@ -35,10 +35,12 @@ function handleVideoPlay(video) {
   const closeBtn = video.querySelector(".video__close");
   const videoEl = video.querySelector(".video__video");
   const overlay = video.querySelector(".video__overlay");
+  // const pattern = video
+  //   .closest(".container__group")
+  //   .querySelector(".footer__pattern");
 
   closeBtn.addEventListener("click", (event) => {
     event.preventDefault();
-
     videoEl.removeAttribute("controls", "controls");
     videoEl.currentTime = 0;
     videoEl.pause();
@@ -46,6 +48,7 @@ function handleVideoPlay(video) {
     overlay.classList.remove("video__overlay--is-playing");
     videoEl.classList.remove("video__video--is-playing");
     video.classList.remove("video--expanded");
+    // pattern.style.zIndex = 1;
   });
 
   videoEl.onplay = () => {
@@ -54,13 +57,14 @@ function handleVideoPlay(video) {
     video.classList.add("video--expanded");
     overlay.classList.add("video__overlay--is-playing");
     closeBtn.classList.add("video__close--is-visible");
+    // pattern.style.zIndex = -1;
   };
 
   videoEl.onpause = () => {
     overlay.classList.remove("video__overlay--is-playing");
   };
 
-  // restart video on videos with .video--loop class
+  // auto loop on videos with .video--loop class
   videoEl.onended = () => {
     if (video.classList.contains("video--loop")) {
       videoEl.play();
