@@ -2,15 +2,39 @@ const videos = document.querySelectorAll(".video");
 
 videos.forEach((video) => {
   const playBtn = video.querySelector(".video__play");
-  const closeBtn = video.querySelector(".video__close");
   const videoEl = video.querySelector(".video__video");
-  const overlay = video.querySelector(".video__overlay");
 
   playBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    closeAllVideosExcept(video);
     video.scrollIntoView({ behavior: "smooth", block: "start" });
     videoEl.play();
+    handleVideoPlay(video);
   });
+});
+
+function closeAllVideosExcept(currentVideo) {
+  videos.forEach((video) => {
+    if (video !== currentVideo) {
+      const videoEl = video.querySelector(".video__video");
+      const closeBtn = video.querySelector(".video__close");
+      const overlay = video.querySelector(".video__overlay");
+
+      videoEl.removeAttribute("controls", "controls");
+      videoEl.currentTime = 0;
+      videoEl.pause();
+      closeBtn.classList.remove("video__close--is-visible");
+      overlay.classList.remove("video__overlay--is-playing");
+      videoEl.classList.remove("video__video--is-playing");
+      video.classList.remove("video--expanded");
+    }
+  });
+}
+
+function handleVideoPlay(video) {
+  const closeBtn = video.querySelector(".video__close");
+  const videoEl = video.querySelector(".video__video");
+  const overlay = video.querySelector(".video__overlay");
 
   closeBtn.addEventListener("click", (event) => {
     event.preventDefault();
@@ -36,10 +60,10 @@ videos.forEach((video) => {
     overlay.classList.remove("video__overlay--is-playing");
   };
 
-  //restart video on videos with .video--loop class
+  // restart video on videos with .video--loop class
   videoEl.onended = () => {
     if (video.classList.contains("video--loop")) {
       videoEl.play();
     }
   };
-});
+}
