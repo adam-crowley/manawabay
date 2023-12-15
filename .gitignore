@@ -4,3 +4,6 @@
 
 # ignore all directories with the name video
 video/
+
+# ignore all directories with the name files
+files/

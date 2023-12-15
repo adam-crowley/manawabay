@@ -188,8 +188,11 @@ body {
 
 p {
   font-family: 'shneleicht';
-	font-size: 1.2rem;
+	font-size: 1rem;
   margin-bottom: 2em;
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+	}
 }
 
 h1 {
